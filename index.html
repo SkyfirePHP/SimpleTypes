@@ -35,11 +35,11 @@
 <p>Simply add a dependency on <code>smetdenis/simpletypes</code> to your project's <code>composer.json</code> file if you use <a href="http://getcomposer.org/">Composer</a> to manage the dependencies of your project.
 Here is a minimal example of a <code>composer.json</code> file that just defines a dependency on Money:</p>
 
-<div class="highlight highlight-javascript"><pre>{
-    <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">"</span>smetdenis/simpletypes<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>1.*<span class="pl-pds">"</span></span>
-    }
-}</pre></div>
+<div class="highlight highlight-javascript"><pre>    {
+        <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span><span class="pl-k">:</span> {
+            <span class="pl-s"><span class="pl-pds">"</span>smetdenis/simpletypes<span class="pl-pds">"</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>1.*<span class="pl-pds">"</span></span>
+        }
+    }</pre></div>
 
 <p>... or in a command line <code>composer require smetdenis/simpletypes</code></p>
 
@@ -48,6 +48,7 @@ Here is a minimal example of a <code>composer.json</code> file that just defines
 
 <div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-k">require_once</span> <span class="pl-s"><span class="pl-pds">'</span>./src/autoload.php<span class="pl-pds">'</span></span>; <span class="pl-c">// or with composer autoload.php</span></span>
 <span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// Get needed classes</span></span>
 <span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">SmetDenis\SimpleTypes\Config</span>;</span>
 <span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">SmetDenis\SimpleTypes\Money</span>;</span>
 <span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">SmetDenis\SimpleTypes\ConfigMoney</span>;</span>
@@ -67,14 +68,18 @@ Here is a minimal example of a <code>composer.json</code> file that just defines
 <p>SimpleTypes has such ready configurations like</p>
 
 <ul>
-<li>Area</li>
-<li>Degree (geometry)</li>
-<li>Info (bytes, bits...)</li>
-<li>Length</li>
-<li>Money (Currency converter)</li>
-<li>Temperature (Kelvin, Fahrenheit, Celsius and etc)</li>
-<li>Volume</li>
-<li>Weight</li>
+<li><a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/area.php">Area</a></li>
+<li>
+<a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/degree.php">Degree</a> (geometry)</li>
+<li>
+<a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/info.php">Info</a> (bytes, bits...)</li>
+<li><a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/length.php">Length</a></li>
+<li>
+<a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/money.php">Money</a> (Currency converter)</li>
+<li>
+<a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/temp.php">Temperature</a> (Kelvin, Fahrenheit, Celsius and etc)</li>
+<li><a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/volume.php">Volume</a></li>
+<li><a href="https://github.com/smetdenis/SimpleTypes/blob/master/src/config/weight.php">Weight</a></li>
 </ul>
 
 <p>You can add your own type. It's really easy. See this page below.</p>
@@ -83,15 +88,15 @@ Here is a minimal example of a <code>composer.json</code> file that just defines
 <a id="smart-and-useful-parser" class="anchor" href="#smart-and-useful-parser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Smart and useful parser</h3>
 
 <p>SimpleTypes has really smart parser for all input values.
-It can find number, understand any decimal symbols, trim, letter cases, e.t.c...</p>
+It can find number, understand any decimal symbols, trim, letter cases, e.t.c... and it works relly fast!</p>
 
 <div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$money</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-s"><span class="pl-pds">'</span> - 1 2 3 , 4 5 6 rub <span class="pl-pds">'</span></span>); <span class="pl-c">// Equals -123.456 rubles</span></span>
 <span class="pl-s1"><span class="pl-smi">$money</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-s"><span class="pl-pds">'</span>1.0e+18 EUR <span class="pl-pds">'</span></span>); <span class="pl-c">// Really huge number. I'm rich! =)</span></span>
 <span class="pl-s1"><span class="pl-smi">$money</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-s"><span class="pl-pds">'</span>  EuR 3,50   <span class="pl-pds">'</span></span>);</span>
 <span class="pl-s1"><span class="pl-smi">$money</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-s"><span class="pl-pds">'</span>usd<span class="pl-pds">'</span></span>); <span class="pl-c">// Just object with usd rule</span></span></pre></div>
 
-<h3>
-<a id="basic-arithmetic" class="anchor" href="#basic-arithmetic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic arithmetic</h3>
+<h2>
+<a id="basic-arithmetic" class="anchor" href="#basic-arithmetic" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic arithmetic</h2>
 
 <p>Different ways to use basic arithmetic</p>
 
@@ -111,6 +116,88 @@ It can find number, understand any decimal symbols, trim, letter cases, e.t.c...
 <span class="pl-s1"><span class="pl-c">// example #5</span></span>
 <span class="pl-s1"><span class="pl-smi">$usd</span><span class="pl-k">-&gt;</span>add([<span class="pl-s"><span class="pl-pds">'</span>10<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>eur<span class="pl-pds">'</span></span>]);</span></pre></div>
 
+<p>SimpleTypes can</p>
+
+<ul>
+<li>add</li>
+<li>subtract</li>
+<li>division</li>
+<li>multiply</li>
+<li>use custom functions (Closure)</li>
+<li>negative / positibe / invert sign / abs</li>
+<li>use percent</li>
+<li>setting empty value</li>
+<li>setting another value and rule</li>
+<li>create clone</li>
+<li>converting to any rules (currencies, units)</li>
+<li>rounding</li>
+<li>comparing</li>
+<li>... and others</li>
+</ul>
+
+<h2>
+<a id="compare-values" class="anchor" href="#compare-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compare values</h2>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$kg</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Weight</span>(<span class="pl-s"><span class="pl-pds">'</span>1 kg<span class="pl-pds">'</span></span>); <span class="pl-c">// one kilogram</span></span>
+<span class="pl-s1"><span class="pl-smi">$lb</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Weight</span>(<span class="pl-s"><span class="pl-pds">'</span>2 lb<span class="pl-pds">'</span></span>); <span class="pl-c">// two pounds</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-smi">$lb</span>)); <span class="pl-c">// false ("==" by default)</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-smi">$lb</span>, <span class="pl-s"><span class="pl-pds">'</span>==<span class="pl-pds">'</span></span>));<span class="pl-c">// false</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-smi">$lb</span>, <span class="pl-s"><span class="pl-pds">'</span>&lt;<span class="pl-pds">'</span></span>));<span class="pl-c">// false</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-smi">$lb</span>, <span class="pl-s"><span class="pl-pds">'</span>&lt;=<span class="pl-pds">'</span></span>));<span class="pl-c">// false</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-smi">$lb</span>, <span class="pl-s"><span class="pl-pds">'</span>&gt;<span class="pl-pds">'</span></span>));<span class="pl-c">// true</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-smi">$lb</span>, <span class="pl-s"><span class="pl-pds">'</span>&gt;=<span class="pl-pds">'</span></span>));<span class="pl-c">// true</span></span></pre></div>
+
+<p>And same examples but we will use smart parser</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$kg</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Weight</span>(<span class="pl-s"><span class="pl-pds">'</span>1 kg<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$lb</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Weight</span>(<span class="pl-s"><span class="pl-pds">'</span>2 lb<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-s"><span class="pl-pds">'</span>1000 g<span class="pl-pds">'</span></span>)); <span class="pl-c">// true</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-s"><span class="pl-pds">'</span>2 lb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>==<span class="pl-pds">'</span></span>));<span class="pl-c">// false</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-s"><span class="pl-pds">'</span>2 lb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>&lt;<span class="pl-pds">'</span></span>));<span class="pl-c">// false</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-s"><span class="pl-pds">'</span>2 lb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>&lt;=<span class="pl-pds">'</span></span>));<span class="pl-c">// false</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-s"><span class="pl-pds">'</span>2 lb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>&gt;<span class="pl-pds">'</span></span>));<span class="pl-c">// true</span></span>
+<span class="pl-s1"><span class="pl-c1">var_dump</span>(<span class="pl-smi">$kg</span><span class="pl-k">-&gt;</span>compare(<span class="pl-s"><span class="pl-pds">'</span>2 lb<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>&gt;=<span class="pl-pds">'</span></span>));<span class="pl-c">// true</span></span></pre></div>
+
+<h2>
+<a id="percent-method" class="anchor" href="#percent-method" aria-hidden="true"><span class="octicon octicon-link"></span></a>Percent method</h2>
+
+<p>Simple way for count difference between two values</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$origPrice</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-s"><span class="pl-pds">'</span>100 usd<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$realPrice</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-s"><span class="pl-pds">'</span>40 eur<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$diff</span> <span class="pl-k">=</span> <span class="pl-smi">$realPrice</span><span class="pl-k">-&gt;</span>percent(<span class="pl-smi">$origPrice</span>);</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$diff</span><span class="pl-k">-&gt;</span>text(); <span class="pl-c">// 80%</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$discount</span> <span class="pl-k">=</span> <span class="pl-smi">$realPrice</span><span class="pl-k">-&gt;</span>percent(<span class="pl-smi">$origPrice</span>, <span class="pl-c1">true</span>); <span class="pl-c">// revert flag added</span></span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$discount</span><span class="pl-k">-&gt;</span>text(); <span class="pl-c">// 20%</span></span></pre></div>
+
+<h2>
+<a id="php-magic-methods" class="anchor" href="#php-magic-methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>PHP magic methods</h2>
+
+<p>Safe serialize/unserialize</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$valBefore</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>val(<span class="pl-s"><span class="pl-pds">'</span>500 usd<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$valString</span> <span class="pl-k">=</span> <span class="pl-c1">serialize</span>(<span class="pl-smi">$valBefore</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$valAfter</span>  <span class="pl-k">=</span> <span class="pl-c1">unserialize</span>(<span class="pl-smi">$valString</span>)<span class="pl-k">-&gt;</span>convert(<span class="pl-s"><span class="pl-pds">'</span>eur<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$valBefore</span><span class="pl-k">-&gt;</span>compare(<span class="pl-smi">$valAfter</span>);<span class="pl-c">// true</span></span></pre></div>
+
+<p>__toString() works like text() method</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$val</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>val(<span class="pl-s"><span class="pl-pds">'</span>500 usd<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$val</span>; <span class="pl-c">// "$500.00"</span></span></pre></div>
+
+<p>__invoke()</p>
+
+<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-smi">$val</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>val(<span class="pl-s"><span class="pl-pds">'</span>10 eur<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c">// it's converting</span></span>
+<span class="pl-s1">$<span class="pl-smi">val</span>(<span class="pl-s"><span class="pl-pds">'</span>usd<span class="pl-pds">'</span></span>); <span class="pl-c">// so object now contains "20 usd" (1 eur = 2 usd)</span></span>
+<span class="pl-s1"><span class="pl-c">// set new value and rule</span></span>
+<span class="pl-s1">$<span class="pl-smi">val</span>(<span class="pl-s"><span class="pl-pds">'</span>100 rub<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">$<span class="pl-smi">val</span>(<span class="pl-s"><span class="pl-pds">'</span>100<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>uah<span class="pl-pds">'</span></span>);</span></pre></div>
+
 <h3>
 <a id="chaining-method-calls" class="anchor" href="#chaining-method-calls" aria-hidden="true"><span class="octicon octicon-link"></span></a>Chaining method calls</h3>
 
@@ -127,7 +214,7 @@ It can find number, understand any decimal symbols, trim, letter cases, e.t.c...
 <span class="pl-s1">            <span class="pl-k">-&gt;</span>add(<span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-s"><span class="pl-pds">'</span>600 rub<span class="pl-pds">'</span></span>))<span class="pl-c">// 1.05€ (1 EUR = 50 RUB)</span></span>
 <span class="pl-s1">            <span class="pl-k">-&gt;</span>add(<span class="pl-s"><span class="pl-pds">'</span>-500%<span class="pl-pds">'</span></span>);<span class="pl-c">// -4.2€</span></span>
 <span class="pl-s1">    })</span>
-<span class="pl-s1">    <span class="pl-k">-&gt;</span>abs() <span class="pl-c">// 4.2€</span></span></pre></div>
+<span class="pl-s1">    <span class="pl-k">-&gt;</span>abs(); <span class="pl-c">// 4.2€</span></span></pre></div>
 
 <h2>
 <a id="different-ways-for-output-and-rendering" class="anchor" href="#different-ways-for-output-and-rendering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Different ways for output and rendering</h2>
@@ -212,7 +299,7 @@ For example, config for information</p>
 <span class="pl-s1">        <span class="pl-c">// key of array is alias for parser</span></span>
 <span class="pl-s1">        <span class="pl-k">return</span> <span class="pl-c1">array</span>(</span>
 <span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>byte<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
-<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>rate<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1</span> <span class="pl-c">// 1 byte = 1 byte =)))</span></span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>rate<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1</span> <span class="pl-c">// Because 1 byte to byte is 1 =)))</span></span>
 <span class="pl-s1">            ),</span>
 <span class="pl-s1"></span>
 <span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>kb<span class="pl-pds">'</span></span>   <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
@@ -228,7 +315,7 @@ For example, config for information</p>
 <span class="pl-s1">            ),</span>
 <span class="pl-s1"></span>
 <span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>mb<span class="pl-pds">'</span></span>   <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>( <span class="pl-c">// Other params gets from $this-&gt;defaultParams variable</span></span>
-<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>symbol<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>GB<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>symbol<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>MB<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">                <span class="pl-s"><span class="pl-pds">'</span>rate<span class="pl-pds">'</span></span>   <span class="pl-k">=&gt;</span> <span class="pl-c1">1024</span> <span class="pl-k">*</span> <span class="pl-c1">1024</span>,</span>
 <span class="pl-s1">            ),</span>
 <span class="pl-s1"></span>
